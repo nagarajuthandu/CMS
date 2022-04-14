@@ -2,6 +2,9 @@ const express = require("express");
 const cors = require("cors");
 const db = require("./models");
 const dbConfig=require("./Config/db.config");
+const app = express();
+require('./routes/auth.routes')(app);
+require('./routes/user.routes')(app);
 // database connection
 const Role = db.role;
 db.mongoose
@@ -52,7 +55,7 @@ function initial() {
   }
 
 
-const app = express();
+
 var corsOptions = {
   origin: "http://localhost:8081"
 };

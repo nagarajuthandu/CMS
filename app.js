@@ -1,5 +1,28 @@
 const express = require("express");
 const cors = require("cors");
+const db = require("./models");
+const dbConfig=require("./Config/db.config");
+// database connection
+const Role = db.role;
+db.mongoose
+  .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => {
+    console.log("Successfully connect to MongoDB.");
+    initial();
+  })
+  .catch(err => {
+    console.error("Connection error", err);
+    process.exit();
+  });
+
+
+
+
+
+
 const app = express();
 var corsOptions = {
   origin: "http://localhost:8081"
